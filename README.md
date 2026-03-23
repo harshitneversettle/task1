@@ -1,79 +1,145 @@
-<<<<<<< HEAD
-# Task1
-=======
-# React + TypeScript + Vite
+## Live at : https://task1-phi-two.vercel.app
+# Task Manager Web App
 
-live at : task1-phi-two.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive task management single-page application built as part of a Software Engineer Intern hiring assignment.
+The app allows users to manage tasks efficiently with CRUD operations, filtering, and persistent storage.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Features
 
-## React Compiler
+*  Add new tasks
+*  Edit existing tasks
+*  Mark tasks as completed / pending
+*  Delete tasks
+*  Filter tasks (All / Pending / Completed)
+*  Persistent storage using **localStorage**
+*  Google OAuth login 
+*  Input sanitization using DOMPurify (XSS prevention)
+*  Fully responsive UI (mobile + desktop)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Frontend:** React + TypeScript
+* **Styling:** Tailwind CSS
+* **Authentication:** Google OAuth (`@react-oauth/google`)
+* **State Management:** React Hooks (`useState`, `useRef`)
+* **Storage:** Browser localStorage
+* **Security:** DOMPurify (XSS protection)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+##  Key Design Decisions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Local Storage for Persistence
+
+* Tasks are stored per user using their email as key.
+* Ensures data persists across page reloads without backend.
+
+### 2. State-Driven UI
+
+* All UI updates are handled via React state (`useState`)
+* Avoided direct mutation → ensures predictable rendering
+
+### 3. Input Sanitization
+
+* Used `DOMPurify` to sanitize user inputs before storing
+* Prevents XSS attacks
+
+### 4. UUID Strategy
+
+* Used `Date.now()` for unique task IDs
+* Lightweight and sufficient for this scope
+
+### 5. Filtering Logic
+
+* Separate filtered state (`selectedTasks`) for better UI control
+
+---
+
+##  Authentication Flow
+
+* User logs in using Google OAuth
+* Access token is used to fetch user profile
+* User data stored in React state
+* Tasks are scoped per user (email-based storage)
+
+---
+
+##  Project Structure
+
+```
+src/
+ ├── components/
+ │    ├── Navbar.tsx        # Google login/logout
+ │    ├── TaskInput.tsx     # Task CRUD + UI
+ │
+ ├── types/
+ │    ├── googleUser.ts
+ │    ├── tasksUser.ts
+ │
+ ├── App.tsx
+ └── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+##  Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation steps 
+## manual installation 
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/harshitneversettle/task1
+cd task-manager
 ```
->>>>>>> b3d0f99 (add : project structure)
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the app
+
+```bash
+npm run dev
+```
+
+---
+
+## Docker installation 
+
+```bash
+docker run -e VITE_CLIENT_ID={your_client_id_here} -p 5173:5173 harshitneversettle/task1:dev
+```
+
+##  Deployment
+
+Deployed using:
+
+* Vercel (https://task1-phi-two.vercel.app/)
+
+---
+
+##  Future Improvements
+
+* Backend integration (Node.js + DB)
+* Drag & drop task ordering
+* Due dates & reminders
+* Dark/light theme toggle
+* Optimistic UI updates
+
+---
+
+##  Author
+
+Harshit
+Software Engineer Intern Candidate
+
+---
