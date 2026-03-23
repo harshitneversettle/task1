@@ -132,7 +132,7 @@ export default function TaskInput({ user }: props) {
               }}
               className={`bg-black text-white w-24 md:w-30 p-1 text-md md:text-lg rounded-xl border-2  ${selectedFilter == "Active" ? `border-red-600` : ``}`}
             >
-              Pending
+              Active
             </button>
             <button
               onClick={() => {
