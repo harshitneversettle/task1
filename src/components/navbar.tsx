@@ -24,8 +24,8 @@ export default function Navbar({ user, setUser }: props) {
           sub: userData.sub,
         };
         setUser(useredata);
-        localStorage.setItem(`${userData.email}`, JSON.stringify(useredata));
-        console.log(userData.email);
+        // localStorage.setItem(`${userData.email}`, JSON.stringify(useredata));
+        // localStorage.removeItem(`${userData.email}`);
       } catch (error) {
         console.error("Error decoding token:", error);
       }
@@ -35,14 +35,13 @@ export default function Navbar({ user, setUser }: props) {
   function logout() {
     googleLogout();
     setUser(null);
-    localStorage.removeItem("taskforge:user");
   }
   return (
     <>
       <nav className=" w-full z-50 border-b border-white/10 bg-black px-4 py-3">
         <div className="flex justify-between mx-auto">
           <div className="font-display font-extrabold text-2xl text-white tracking-tight">
-            TaskForge
+            Task Manager
           </div>
 
           <div>
