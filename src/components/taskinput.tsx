@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import type { GoogleUser } from "../types/googleUser.js";
 import type { Tasks } from "../types/tasksUser.js";
+import DOMPurify from "dompurify";
 
 interface props {
   user: GoogleUser | null;
@@ -24,9 +25,11 @@ export default function TaskInput({ user }: props) {
 
   function handleTasks() {
     if (!taskRef.current) return;
+    if (taskRef.current.value.length == 0) return;
+    const purifirdValue = DOMPurify.sanitize(taskRef.current.value);
     tasks.push({
       email: userEmail,
-      name: taskRef.current.value,
+      name: purifirdValue,
       status: false,
       uuid: Date.now(),
     });
@@ -73,6 +76,7 @@ export default function TaskInput({ user }: props) {
             <input
               ref={taskRef}
               type="text"
+              maxLength={200}
               placeholder="add a task"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
