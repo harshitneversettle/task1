@@ -89,7 +89,7 @@ export default function TaskInput({ user }: props) {
             />
             <button
               onClick={handleTasks}
-              className="bg-black text-white hover:bg-black/80 text-sm font-medium px-4 py-2.5 rounded-lg whitespace-nowrap"
+              className="bg-black text-white hover:bg-black/80 text-sm font-medium px-4 py-2.5 rounded-lg whitespace-nowrap hover:border-white"
             >
               Add task
             </button>
@@ -130,7 +130,7 @@ export default function TaskInput({ user }: props) {
                 selectedTasks.map((i: any) => (
                   <div
                     key={i.uuid}
-                    className="flex items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
+                    className="max-w-150 min-w-0 flex items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
                   >
                     <button
                       onClick={() => handleDone(i.uuid)}
@@ -141,7 +141,7 @@ export default function TaskInput({ user }: props) {
                       }`}
                     ></button>
                     <h2
-                      className={`flex-1 text-lg break-words ${
+                      className={`flex-1 text-lg break-all  ${
                         i.status
                           ? "line-through text-white/30"
                           : "text-white/90"
@@ -151,22 +151,22 @@ export default function TaskInput({ user }: props) {
                     </h2>
                     <button
                       onClick={() => deleteTask(i.uuid)}
-                      className="bg-white text-xs hover:scale-[1.03] rounded-xl p-1 duration-200"
+                      className="bg-white text-sm rounded-xl p-1  hover:scale-[1.3] "
                     >
                       delete
                     </button>
                   </div>
                 ))
               ) : (
-                <h1 className="text-black items-center mx-auto pt-20">
-                  "nothing is here"
+                <h1 className="text-white text-lg items-center mx-auto pt-20">
+                  nothing is here
                 </h1>
               )
             ) : tasks.length != 0 ? (
               tasks.map((i: any) => (
                 <div
                   key={i.uuid}
-                  className="flex items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
+                  className="flex max-w-150 min-w-0 items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
                 >
                   <button
                     onClick={() => handleDone(i.uuid)}
@@ -177,7 +177,7 @@ export default function TaskInput({ user }: props) {
                     }`}
                   ></button>
                   <h2
-                    className={`flex-1 text-lg break-words ${
+                    className={`flex-1 text-lg break-all ${
                       i.status ? "line-through text-white/30" : "text-white/90"
                     }`}
                   >
@@ -192,7 +192,7 @@ export default function TaskInput({ user }: props) {
                 </div>
               ))
             ) : (
-              <h1 className="text-black items-center mx-auto pt-20">
+              <h1 className="text-white items-center text-lg mx-auto pt-20">
                 Add tasks
               </h1>
             )}
