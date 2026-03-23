@@ -7,7 +7,7 @@ export default function TaskInput() {
       <div className="">
         <div className="">
           <input ref={taskRef} type="text" />
-          <button>add task</button>
+          {/* <button onClick={handleTasks}>add task</button> */}
         </div>
       </div>
     </>

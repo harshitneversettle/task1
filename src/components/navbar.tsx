@@ -6,7 +6,6 @@ export default function Navbar() {
   const [user, setUser] = useState<GoogleUser | null>(null);
   const handleGoogleSuccess = async (response: any) => {
     try {
-      console.log(response);
       const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
         headers: { Authorization: `Bearer ${response.access_token}` },
       });
@@ -19,6 +18,7 @@ export default function Navbar() {
         sub: userData.sub,
       };
       setUser(useredata);
+      localStorage.setItem(`${user?.email}`, JSON.stringify({ userData }));
     } catch (error) {
       console.error("Error decoding token:", error);
     }
