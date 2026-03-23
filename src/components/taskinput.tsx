@@ -76,7 +76,7 @@ export default function TaskInput({ user }: props) {
 
   function handleEdit(id: number) {
     if (!editRef.current) return;
-    const newText = editRef.current.value;
+    const newText = DOMPurify.sanitize(editRef.current.value);
     const tasks = JSON.parse(localStorage.getItem(`${userEmail}`)!);
     console.log(tasks);
     tasks.forEach((i: any) => {
