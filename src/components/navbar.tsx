@@ -23,18 +23,47 @@ export default function Navbar() {
       console.error("Error decoding token:", error);
     }
   };
+
+  function logout() {
+    setUser(null);
+  }
   return (
     <>
-      <div className="">
-        <div className="">Task Manager</div>
-        <div className="">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            useOneTap
-            theme="filled_black"
-          />
+      <nav className=" w-full z-50 border-b border-white/10 bg-black px-4 py-3">
+        <div className="flex justify-between mx-auto">
+          <div className="font-display font-extrabold text-2xl text-white tracking-tight">
+            TaskForge
+          </div>
+
+          <div>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <img
+                  src={user.picture}
+                  alt={user.name}
+                  referrerPolicy="no-referrer"
+                  className="w-12 h-12 rounded-full border border-white/20"
+                />
+                <span className="text-sm text-white hidden sm:block">
+                  {user.firstname}
+                </span>
+                <button
+                  onClick={logout}
+                  className="text-lg text-white hover:text-white/60 transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                useOneTap
+                theme="filled_black"
+              />
+            )}
+          </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }
