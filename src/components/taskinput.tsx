@@ -187,7 +187,7 @@ export default function TaskInput({ user }: props) {
                 <div className="">
                   <div
                     key={i.uuid}
-                    className="flex max-w-160 min-w-160 items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
+                    className="flex md:max-w-160 md:min-w-160 items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
                   >
                     <button
                       onClick={() => handleDone(i.uuid)}
@@ -222,7 +222,7 @@ export default function TaskInput({ user }: props) {
                     </button>
                   </div>
                   {showEditinput[0] == true && showEditinput[1] == i.uuid && (
-                    <div className="flex w-160 mt-2 mb-2 gap-3">
+                    <div className="flex md:w-160 mt-2 mb-2 gap-3">
                       <input
                         ref={editRef}
                         type="text"
