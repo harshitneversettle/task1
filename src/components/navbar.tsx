@@ -1,31 +1,41 @@
 import { useState } from "react";
 import type { GoogleUser } from "../types/googleUser.js";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-
-export default function Navbar() {
-  const [user, setUser] = useState<GoogleUser | null>(null);
-  const handleGoogleSuccess = async (response: any) => {
-    try {
-      const res = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-        headers: { Authorization: `Bearer ${response.access_token}` },
-      });
-      const userData = await res.json();
-      const useredata: GoogleUser = {
-        name: userData.name,
-        email: userData.email,
-        firstname: userData.given_name,
-        picture: userData.picture,
-        sub: userData.sub,
-      };
-      setUser(useredata);
-      localStorage.setItem(`${user?.email}`, JSON.stringify({ userData }));
-    } catch (error) {
-      console.error("Error decoding token:", error);
-    }
-  };
+import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+interface props {
+  user: GoogleUser | null;
+  setUser: React.Dispatch<React.SetStateAction<GoogleUser | null>>;
+}
+export default function Navbar({ user, setUser }: props) {
+  const login = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        const res = await fetch(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: { Authorization: `Bearer ${response.access_token}` },
+          },
+        );
+        const userData = await res.json();
+        const useredata: GoogleUser = {
+          name: userData.name,
+          email: userData.email,
+          firstname: userData.given_name,
+          picture: userData.picture,
+          sub: userData.sub,
+        };
+        setUser(useredata);
+        localStorage.setItem(`${userData.email}`, JSON.stringify(useredata));
+        console.log(userData.email);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    },
+  });
 
   function logout() {
+    googleLogout();
     setUser(null);
+    localStorage.removeItem("taskforge:user");
   }
   return (
     <>
@@ -55,11 +65,12 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                useOneTap
-                theme="filled_black"
-              />
+              <button
+                onClick={() => login()}
+                className="bg-white text-black text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/90 transition-colors"
+              >
+                Sign in with Google
+              </button>
             )}
           </div>
         </div>
