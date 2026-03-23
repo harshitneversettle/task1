@@ -18,6 +18,7 @@ The app allows users to manage tasks efficiently with CRUD operations, filtering
 *  Google OAuth login 
 *  Input sanitization using DOMPurify (XSS prevention)
 *  Fully responsive UI (mobile + desktop)
+*  Fully containerized using Docker
 
 ---
 
@@ -29,6 +30,7 @@ The app allows users to manage tasks efficiently with CRUD operations, filtering
 * **State Management:** React Hooks (`useState`, `useRef`)
 * **Storage:** Browser localStorage
 * **Security:** DOMPurify (XSS protection)
+* **Deployment** : vercel 
 
 ---
 
