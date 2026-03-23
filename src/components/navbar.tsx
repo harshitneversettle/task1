@@ -24,11 +24,7 @@ export default function Navbar({ user, setUser }: props) {
           sub: userData.sub,
         };
         setUser(useredata);
-        // localStorage.setItem(`${userData.email}`, JSON.stringify(useredata));
-        // localStorage.removeItem(`${userData.email}`);
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
+      } catch (error) {}
     },
   });
 

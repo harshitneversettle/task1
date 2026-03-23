@@ -10,7 +10,6 @@ export default function TaskInput({ user }: props) {
   const taskRef = useRef<HTMLInputElement>(null);
   const userEmail = user.email;
 
-  //   console.log(prevData);
   const [usertasks, setUsertasks] = useState<Tasks[]>(() => {
     const prevData = localStorage.getItem(`${userEmail}`);
     return prevData ? JSON.parse(prevData) : [];
@@ -33,7 +32,6 @@ export default function TaskInput({ user }: props) {
     });
     localStorage.setItem(`${userEmail}`, JSON.stringify(tasks));
     setUsertasks(tasks);
-    console.log(tasks);
     taskRef.current.value = "";
   }
 
@@ -46,7 +44,6 @@ export default function TaskInput({ user }: props) {
     });
     localStorage.setItem(`${userEmail}`, JSON.stringify(updatedTasks));
     setUsertasks(updatedTasks);
-    console.log(updatedTasks);
   }
 
   function deleteTask(id: number) {
@@ -59,14 +56,12 @@ export default function TaskInput({ user }: props) {
   function showPending() {
     setFilter(true);
     const pendingtasks = tasks.filter((i) => !i.status);
-    console.log(pendingtasks);
     setSelectedTasks(pendingtasks);
   }
 
   function showCompleted() {
     setFilter(true);
     const completedtasks = tasks.filter((i) => i.status);
-    console.log(completedtasks);
     setSelectedTasks(completedtasks);
   }
 
@@ -85,7 +80,7 @@ export default function TaskInput({ user }: props) {
                   handleTasks();
                 }
               }}
-              className="flex-1 bg-black border border-white/20 rounded-lg px-4 py-2.5 text-white text-md placeholder-white/60 focus:border-white/25 transition-colors"
+              className="flex-1 bg-black border border-white/20 rounded-lg px-4 py-2.5 text-white text-sm md-text-md placeholder-white/60 focus:border-white/25 transition-colors"
             />
             <button
               onClick={handleTasks}
@@ -100,7 +95,7 @@ export default function TaskInput({ user }: props) {
                 setFilter(false);
                 setSelectedFilter("All");
               }}
-              className={`bg-black text-white w-30 p-1 text-lg rounded-xl border-2 ${selectedFilter == "All" ? `border-red-600` : ``}`}
+              className={`bg-black text-white w-24 md-w-30 p-1 text-md md-text-lg rounded-xl border-2 ${selectedFilter == "All" ? `border-red-600` : ``}`}
             >
               All
             </button>
@@ -108,9 +103,8 @@ export default function TaskInput({ user }: props) {
               onClick={() => {
                 showPending();
                 setSelectedFilter("pending");
-                console.log(selectedFilter);
               }}
-              className={`bg-black text-white w-30 p-1 text-lg rounded-xl border-2  ${selectedFilter == "pending" ? `border-red-600` : ``}`}
+              className={`bg-black text-white w-24 md-w-30 p-1 text-md md-text-lg rounded-xl border-2  ${selectedFilter == "pending" ? `border-red-600` : ``}`}
             >
               Pending
             </button>
@@ -119,7 +113,7 @@ export default function TaskInput({ user }: props) {
                 showCompleted();
                 setSelectedFilter("completed");
               }}
-              className={`bg-black text-white w-30 p-1 text-lg rounded-xl border-2 ${selectedFilter == "completed" ? `border-red-600` : ``}`}
+              className={`bg-black text-white w-24 md-w-30 p-1 text-md md-text-lg rounded-xl border-2 ${selectedFilter == "completed" ? `border-red-600` : ``}`}
             >
               Completed
             </button>
