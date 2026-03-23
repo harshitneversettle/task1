@@ -1,5 +1,7 @@
 ## Live at : https://task1-phi-two.vercel.app
-### Demo for pc : [Watch Demo](https://www.loom.com/share/0ae235984363432091b0a6c0bf1af47c)
+### Demo for pc : [Watch Demo](https://www.loom.com/share/0ae235984363432091b0a6c0bf1af47c)   
+### Demo for phone : [Watch Demo](https://drive.google.com/file/d/1bfjsPSOBOLAQCJiYC8n0_5SkRuVlGOJn/view?usp=drivesdk)
+
 # Task Manager Web App
 
 
@@ -99,7 +101,7 @@ src/
 
 ```bash
 git clone https://github.com/harshitneversettle/task1
-cd task-manager
+cd task1
 ```
 
 ### 2. Install dependencies
