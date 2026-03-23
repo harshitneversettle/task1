@@ -18,7 +18,7 @@ export default function TaskInput({ user }: props) {
   const [selectedTasks, setSelectedTasks] = useState<Tasks[]>(usertasks);
   const [filter, setFilter] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<
-    "All" | "pending" | "completed"
+    "All" | "Active" | "completed"
   >("All");
   const editRef = useRef<HTMLInputElement>(null);
   const [showEditinput, setShowEditinput] = useState<[boolean, number]>([
@@ -128,9 +128,9 @@ export default function TaskInput({ user }: props) {
             <button
               onClick={() => {
                 showPending();
-                setSelectedFilter("pending");
+                setSelectedFilter("Active");
               }}
-              className={`bg-black text-white w-24 md:w-30 p-1 text-md md:text-lg rounded-xl border-2  ${selectedFilter == "pending" ? `border-red-600` : ``}`}
+              className={`bg-black text-white w-24 md:w-30 p-1 text-md md:text-lg rounded-xl border-2  ${selectedFilter == "Active" ? `border-red-600` : ``}`}
             >
               Pending
             </button>
