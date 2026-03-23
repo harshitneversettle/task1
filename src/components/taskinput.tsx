@@ -13,7 +13,7 @@ export default function TaskInput({ user }: props) {
   //   console.log(prevData);
   const [usertasks, setUsertasks] = useState<Tasks[]>(() => {
     const prevData = localStorage.getItem(`${userEmail}`);
-    return JSON.parse(prevData!);
+    return prevData ? JSON.parse(prevData) : [];
   });
   const prevData = localStorage.getItem(`${userEmail}`);
   let tasks: Tasks[] = prevData ? JSON.parse(prevData) : [];
@@ -130,7 +130,7 @@ export default function TaskInput({ user }: props) {
                 selectedTasks.map((i: any) => (
                   <div
                     key={i.uuid}
-                    className="max-w-150 min-w-0 flex items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
+                    className="max-w-160 min-w-0 flex items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
                   >
                     <button
                       onClick={() => handleDone(i.uuid)}
@@ -166,7 +166,7 @@ export default function TaskInput({ user }: props) {
               tasks.map((i: any) => (
                 <div
                   key={i.uuid}
-                  className="flex max-w-150 min-w-0 items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
+                  className="flex max-w-160 min-w-0 items-center gap-3 bg-black border border-white/8 rounded-lg px-4 py-3 group"
                 >
                   <button
                     onClick={() => handleDone(i.uuid)}
